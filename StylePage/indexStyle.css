@@ -1,0 +1,49 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* NavBarCSS */
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #F6F6F6;
+}
+
+.Nav_Elements {
+  padding-left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.AdminControler {
+  padding-left: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+ul {
+  padding-left: 30px;
+}
+
+.background_Images {
+  display: flex;
+  justify-content: center;
+  
+}
