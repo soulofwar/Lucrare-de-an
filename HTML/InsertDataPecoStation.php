@@ -5,6 +5,36 @@ if (!$_SESSION['admin']) {
   header("Location: ../HTML/IndexPage.php");
 }
 
+$company = $_POST['company'];
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (empty($_POST['company'])){
+    $errorMSG = "Completeaza campurile";
+    
+  }else {   
+    
+    $conn = new mysqli('localhost','root','','peco');
+
+    if (mysqli_connect_errno()) {
+    
+      } else {
+        $sql = "INSERT INTO companie(Nume_Companie)
+        VALUES ('$company')";
+        if($conn->query($sql) === TRUE) {
+          $msg = "<div class='Succes'>Compania a fost inregistrata!</div>"; 
+        }
+        else{
+          
+          }
+      
+      }
+
+      /*Conexiunea este */
+
+      /* Facem INSERT */
+
+      
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +51,7 @@ if (!$_SESSION['admin']) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../StylePage/indexStyle.css">
-  <link rel="stylesheet" href="InsertData.css">
+  <link rel="stylesheet" href="header.css">
 
 </head>
 <body>
@@ -50,13 +80,19 @@ if (!$_SESSION['admin']) {
   <div class="background_Images">
     <img src="../Images/backgroundimages.jpg" alt="" width="100%" height="100%"> 
     <header>
-    <div class="Nav_Elements">
-    <a href="InsertDataPecoStation.php"><ul>Company</ul></a>
-    <a href="InsertDataCombustibil.php"><ul>Resources</ul></a>
-    <a href="InsertDataPecoImport.php"><ul>IPrices&Quantity</ul></a>
-    <a href="InsertDataPecoExport.php"><ul>EPrices&Quantity</ul></a>
-    <a href="PecoPricesClients.php"><ul>PecoClientsPrices</ul></a>
-    </div>
+    <div class="header"><h2>Introducem Peco Station</h2></div>
+    <form class="form" id="form" action="" method="POST">
+      <div class="form-control">
+        <label>Nume Company</label>
+        <input type="text" placeholder="UserName" name="company" id="company" maxlength="30">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>    
+      <button id="submitBtn" type="submit">Adaugam</button>
+     
+    </form>
+    <?php echo $msg; ?>
   </header>
   
   </div>
