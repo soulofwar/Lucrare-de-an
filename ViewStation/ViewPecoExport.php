@@ -49,7 +49,7 @@ if ($_SESSION['admin']) {
   if (mysqli_connect_errno()) {
   
     } else {
-      $sql = "SELECT * FROM pret_combustibil";
+      $sql = "SELECT * FROM pret_vandut";
  
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
@@ -59,10 +59,11 @@ if ($_SESSION['admin']) {
     <table cellpadding='0' cellspacing='0' border='0'>
     <thead>
       <tr>
-        <th>Nume</th>
+        <th>ID</th>
         <th>Company</th>
         <th>Tip Combustibil</th>
-        <th>Pret</th>
+        <th>Cantitate</th>
+        <th>Pret Vandut</th>
         <th>Data</th>
       </tr>
     </thead>
@@ -77,7 +78,8 @@ if ($_SESSION['admin']) {
         <td> <?= $row['ID'] ?> </td>
         <td> <?= $row['Nume_Companie'] ?></td>
         <td> <?= $row['TIp_Combustibil'] ?></td>
-        <td> <?= $row['Pret'] ?></td>
+        <td> <?= $row['Cantitate'] ?></td>
+        <td> <?= $row['Pret_Vandut'] ?></td>
         <td> <?= $row['Data'] ?></td>
        </tr>
       

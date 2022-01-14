@@ -33,8 +33,8 @@ if (!$_SESSION['admin']) {
     </div>
 
     <div class="Nav_Elements">
-    <a href="#"><ul>Prices</ul></a>
-    <a href="#"><ul>Stations</ul></a>
+    <a href="../ViewStation/ViewPecoPricesAdmin.php"><ul>Prices</ul></a>
+
     <a href="../UpdatePages/UpdateData.php"><ul>Modify</ul></a>
     <a href="../HTML/InsertData.php"><ul>Insert</ul></a>
     <a href="DeleteDataData.php"><ul>Delete</ul></a>
@@ -52,10 +52,7 @@ if (!$_SESSION['admin']) {
     <header>
     <div class="Nav_Elements">
     <a href="DeleteDataCompany.php"><ul>Company</ul></a>
-    <a href="DeleteDataCombustibil.php"><ul>Resources</ul></a>
-    <a href="UpdateDataPecoImport.php"><ul>IPrices&Quantity</ul></a>
-    <a href="UpdateDataPecoExport.php"><ul>EPrices&Quantity</ul></a>
-    <a href="UpdatePecoPricesClients.php"><ul>PecoClientsPrices</ul></a>
+   
     </div>
   </header>
   

@@ -30,9 +30,10 @@ if ($_SESSION['admin']) {
     </div>
 
     <div class="Nav_Elements">
-    <a href="#"><ul>Prices</ul></a>
-    <a href="#"><ul>Stations</ul></a>
-    <a href="#"><ul>Quantity</ul></a>
+      <a href="../ViewStation/ViewPecoPrices.php"><ul>Prices</ul></a>
+    <a href="../ViewStation/ViewPecoImport.php"><ul>Stations Import</ul></a>
+    <a href="../ViewStation/ViewPecoExport.php"><ul>Stations Export</ul></a>
+ 
     </div>
 
     <div class="AdminControler">

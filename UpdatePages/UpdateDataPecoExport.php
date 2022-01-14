@@ -86,8 +86,7 @@ else{
     </div>
 
     <div class="Nav_Elements">
-    <a href="#"><ul>Prices</ul></a>
-    <a href="#"><ul>Stations</ul></a>
+    <a href="../ViewStation/ViewPecoPricesAdmin.php"><ul>Prices</ul></a>
     <a href="UpdateData.php"><ul>Modify</ul></a>
     <a href="../HTML/InsertData.php"><ul>Insert</ul></a>
     <a href="../DeleteData/DeleteDataData.php"><ul>Delete</ul></a>
