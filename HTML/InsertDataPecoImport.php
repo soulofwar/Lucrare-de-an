@@ -87,9 +87,9 @@ if (mysqli_num_rows($result) > 0) {
     <div class="Nav_Elements">
     <a href="#"><ul>Prices</ul></a>
     <a href="#"><ul>Stations</ul></a>
-    <a href="#"><ul>Modify</ul></a>
+    <a href="../UpdatePages/UpdateData.php"><ul>Modify</ul></a>
     <a href="InsertData.php"><ul>Insert</ul></a>
-    <a href="#"><ul>Delete</ul></a>
+    <a href="../DeleteData/DeleteDataData.php"><ul>Delete</ul></a>
     <a href="#"><ul>View</ul></a>
     </div>
 

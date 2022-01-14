@@ -31,15 +31,16 @@ if (mysqli_num_rows($result) > 0) {
  $ID_Company = $row['ID'];
  print_r($ID_Company);
 
- $sql = "INSERT INTO pret_combustibil(ID, Nume_Companie, TIp_Combustibil, Pret, Data)
- VALUES ('$ID_Company', '$company', '$combustibil', '$pret', '$data')";
+ 
+ $sql = "UPDATE pret_combustibil SET ID = '$ID_Company', Nume_Companie = '$company', TIp_Combustibil = '$combustibil', Pret = '$pret', Data = '$data' WHERE Data = '$data'";
+
+ 
  if($conn->query($sql) === TRUE) {
-   print_r('true');
-   $msg = "<div class='Succes'>Datele au fost inregistrate!</div>"; 
- }
- else{
-   
-   }
+  $msg = "<div class='Succes'>Datele au modificate dupa data introdusa de dumnevoastra!</div>"; 
+}
+else{
+ $msg = "<div class='Succes'>Ceva nu a mers bine!</div>"; 
+  }
 } else {
   $msg = "<div class='Succes'>Nu exista o astfel de companie!</div>"; 
 }
@@ -71,7 +72,7 @@ if (mysqli_num_rows($result) > 0) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../StylePage/indexStyle.css">
-  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="../HTML/header.css">
 
 </head>
 <body>
@@ -85,15 +86,15 @@ if (mysqli_num_rows($result) > 0) {
     <div class="Nav_Elements">
     <a href="#"><ul>Prices</ul></a>
     <a href="#"><ul>Stations</ul></a>
-    <a href="../UpdatePages/UpdateData.php"><ul>Modify</ul></a>
-    <a href="InsertData.php"><ul>Insert</ul></a>
-    <a href="#"><ul>Delete</ul></a>
+    <a href="UpdateData.php"><ul>Modify</ul></a>
+    <a href="../HTML/InsertData.php"><ul>Insert</ul></a>
+    <a href="../DeleteData/DeleteDataData.php"><ul>Delete</ul></a>
     <a href="#"><ul>View</ul></a>
     </div>
 
     <div class="Nav_Elements">
     <a><ul>Welcome <?= $_SESSION['admin']['username'] ?></ul></a>
-    <a href="Logout.php"><ul>Log Out</ul></a>
+    <a href="../HTML/Logout.php"><ul>Log Out</ul></a>
     </div>
   </nav>
 

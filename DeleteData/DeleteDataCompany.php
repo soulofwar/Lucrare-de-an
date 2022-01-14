@@ -6,40 +6,63 @@ if (!$_SESSION['admin']) {
 }
 
 $company = $_POST['company'];
-$combustibil = $_POST['combustibil'];
-$pret = $_POST['pret'];
-$data = $_POST['data'];
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (empty($_POST['company']) || empty($_POST['combustibil'])|| empty($_POST['pret'])){
+  if (empty($_POST['company'])){
     $errorMSG = "Completeaza campurile";
     
   }else {   
-    
-    
+  
 
     $conn = new mysqli('localhost','root','','peco');
 
     if (mysqli_connect_errno()) {
     
       } else {
+     
         $sql = "SELECT ID, Nume_Companie FROM companie WHERE Nume_Companie = '$company'";
    
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-if (mysqli_num_rows($result) > 0) {
- 
- $ID_Company = $row['ID'];
- print_r($ID_Company);
 
- $sql = "INSERT INTO pret_combustibil(ID, Nume_Companie, TIp_Combustibil, Pret, Data)
- VALUES ('$ID_Company', '$company', '$combustibil', '$pret', '$data')";
+if (mysqli_num_rows($result) > 0) {
+
+ $ID_Company = $row['ID'];
+
+ $sql = "DELETE FROM companie WHERE ID='$ID_Company'";
  if($conn->query($sql) === TRUE) {
-   print_r('true');
-   $msg = "<div class='Succes'>Datele au fost inregistrate!</div>"; 
- }
- else{
-   
-   }
+  $sql = "DELETE FROM combustibil WHERE ID='$ID_Company'";
+
+  if($conn->query($sql) === TRUE) {
+    $sql = "DELETE FROM pret_achizitionata WHERE ID='$ID_Company'";
+    if($conn->query($sql) === TRUE) {
+      $sql = "DELETE FROM pret_combustibil WHERE ID='$ID_Company'";
+      if($conn->query($sql) === TRUE) {
+        $sql = "DELETE FROM pret_vandut WHERE ID='$ID_Company'";
+        if($conn->query($sql) === TRUE) {
+          $msg = "<div class='Succes'>Toate datele despre companie au fost sterse!</div>"; 
+        }
+        else{
+      
+          }
+      }
+      else{
+    
+        }
+
+  }
+  else{
+
+    }
+  }
+  else{
+    
+    }
+}
+else{
+
+  }
+
 } else {
   $msg = "<div class='Succes'>Nu exista o astfel de companie!</div>"; 
 }
@@ -71,7 +94,7 @@ if (mysqli_num_rows($result) > 0) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../StylePage/indexStyle.css">
-  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="../HTML/header.css">
 
 </head>
 <body>
@@ -79,28 +102,28 @@ if (mysqli_num_rows($result) > 0) {
 
   <nav class="FirstNav">
     <div class="LogoPeco">
-<img src="../Images/logoGas.png" alt="LogoPeco" width="130px" height="100px">
+        <img src="../Images/logoGas.png" alt="LogoPeco" width="130px" height="100px">
     </div>
 
     <div class="Nav_Elements">
-    <a href="#"><ul>Prices</ul></a>
-    <a href="#"><ul>Stations</ul></a>
-    <a href="../UpdatePages/UpdateData.php"><ul>Modify</ul></a>
-    <a href="InsertData.php"><ul>Insert</ul></a>
-    <a href="#"><ul>Delete</ul></a>
-    <a href="#"><ul>View</ul></a>
+      <a href="#"><ul>Prices</ul></a>
+      <a href="#"><ul>Stations</ul></a>
+      <a href="UpdateData.php"><ul>Modify</ul></a>
+      <a href="../HTML/InsertData.php"><ul>Insert</ul></a>
+      <a href="../DeleteData/DeleteDataData.php"><ul>Delete</ul></a>
+      <a href="#"><ul>View</ul></a>
     </div>
 
     <div class="Nav_Elements">
     <a><ul>Welcome <?= $_SESSION['admin']['username'] ?></ul></a>
-    <a href="Logout.php"><ul>Log Out</ul></a>
+    <a href="../HTML/Logout.php"><ul>Log Out</ul></a>
     </div>
   </nav>
 
   <div class="background_Images">
     <img src="../Images/backgroundimages.jpg" alt="" width="100%" height="100%"> 
     <header>
-    <div class="header"><h2>Peco Station Prices</h2></div>
+    <div class="header"><h2>Peco Station Delete</h2></div>
     <form class="form" id="form" action="" method="POST">
       <div class="form-control">
         <label>Nume Company</label>
@@ -109,36 +132,14 @@ if (mysqli_num_rows($result) > 0) {
         <i class="fas fa-exclamation-circle"></i>
         <small>Error message</small>
         </div>  
-        <div class="form-control">  
-        <label>Combustibil</label>
-        <input type="text" placeholder="Tipul Combustibil" name="combustibil" id="combustibil" maxlength="30">
-        <i class="fas fa-check-circle"></i>
-        <i class="fas fa-exclamation-circle"></i>
-        <small>Error message</small>
-        </div>  
-        <div class="form-control">
-        <label>Pretul per litru</label>
-        <input type="text" placeholder="Pretul" name="pret" id="pret" maxlength="30">
-        <i class="fas fa-check-circle"></i>
-        <i class="fas fa-exclamation-circle"></i>
-        <small>Error message</small>
-        </div>  
-        <div class="form-control">
-        <label>Data</label>
-        <input type="date" placeholder="Data" name="data" id="data" maxlength="30">
-        <i class="fas fa-check-circle"></i>
-        <i class="fas fa-exclamation-circle"></i>
-        <small>Error message</small>
-        
-</div>  
-     
-      <button id="submitBtn" type="submit">Adaugam</button>
+      
+      <button id="submitBtn" type="submit">Stergem</button>
      
     </form>
     <?php echo $msg; ?>
   </header>
   
   </div>
-  <script src="PecoPricesClients.js"></script>
+  <script src="DeleteCompanyData.js"></script>
 </body>
 </html>
