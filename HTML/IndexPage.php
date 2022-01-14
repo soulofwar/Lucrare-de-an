@@ -28,7 +28,7 @@ if ($_SESSION['admin']) {
     <div class="LogoPeco">
 <img src="../Images/logoGas.png" alt="LogoPeco" width="130px" height="100px">
     </div>
-
+<!-- Totul Merge-->
     <div class="Nav_Elements">
       <a href="../ViewStation/ViewPecoPrices.php"><ul>Prices</ul></a>
     <a href="../ViewStation/ViewPecoImport.php"><ul>Stations Import</ul></a>
